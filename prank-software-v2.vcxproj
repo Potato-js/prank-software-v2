@@ -110,6 +110,7 @@ xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll" "$(OutDir)\
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="prankgenerator.cpp" />
     <ClCompile Include="pranksoftware.cpp" />
     <QtRcc Include="pranksoftware.qrc" />
     <QtUic Include="pranksoftware.ui" />
@@ -119,6 +120,9 @@ xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll" "$(OutDir)\
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="prankgenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
