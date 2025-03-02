@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 
     generateButton = new QPushButton("Generate .exe", this);
     mainLayout->addWidget(generateButton);
-	connect(browseButton, &QPushButton::clicked, this, &MainWindow::generatePrank);
+	connect(generateButton, &QPushButton::clicked, this, &MainWindow::generatePrank);
 
 	outputLabel = new QLabel("Output: ", this);
 	outputLabel->setAlignment(Qt::AlignCenter);

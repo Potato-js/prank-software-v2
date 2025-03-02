@@ -57,10 +57,10 @@
     <ClCompile Include="displayhandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="template.cpp">
-      <Filter>Source Files\Template</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="template_main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

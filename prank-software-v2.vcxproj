@@ -1,278 +1,249 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build"
-         ToolsVersion="17.0"
-         xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <ItemGroup Label="ProjectConfigurations">
-        <ProjectConfiguration Include="Debug|x64">
-            <Configuration>Debug</Configuration>
-            <Platform>x64</Platform>
-        </ProjectConfiguration>
-        <ProjectConfiguration Include="Release|x64">
-            <Configuration>Release</Configuration>
-            <Platform>x64</Platform>
-        </ProjectConfiguration>
-        <ProjectConfiguration Include="Template|x64">
-            <Configuration>Template</Configuration>
-            <Platform>x64</Platform>
-        </ProjectConfiguration>
-        <ProjectConfiguration Include="UI|x64">
-            <Configuration>UI</Configuration>
-            <Platform>x64</Platform>
-        </ProjectConfiguration>
-    </ItemGroup>
-    <!-- Include main.cpp only in the UI configuration -->
-    <ItemGroup Condition="'$(Configuration)'=='UI'">
-        <ClCompile Include="main.cpp" />
-    </ItemGroup>
-    <!-- Exclude template_main.cpp when building the UI executable -->
-    <ItemGroup Condition="'$(Configuration)'=='UI'">
-        <ClCompile Remove="template_main.cpp" />
-    </ItemGroup>
-    <!-- Include template_main.cpp only in the Template configuration -->
-    <ItemGroup Condition="'$(Configuration)'=='Template'">
-        <ClCompile Include="template_main.cpp" />
-    </ItemGroup>
-    <!-- Exclude main.cpp when building the template executable -->
-    <ItemGroup Condition="'$(Configuration)'=='Template'">
-        <ClCompile Remove="main.cpp" />
-    </ItemGroup>
-    <PropertyGroup Label="Globals">
-        <ProjectGuid>{3C8B64FD-CE54-4464-B4FA-20377881A6F8}</ProjectGuid>
-        <Keyword>QtVS_v304</Keyword>
-        <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
-        <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
-        <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='UI|x64'">10.0</WindowsTargetPlatformVersion>
-        <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Template|x64'">10.0</WindowsTargetPlatformVersion>
-        <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
-    </PropertyGroup>
-    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'"
-                   Label="Configuration">
-        <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v143</PlatformToolset>
-        <UseDebugLibraries>true</UseDebugLibraries>
-        <CharacterSet>Unicode</CharacterSet>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
-                   Label="Configuration">
-        <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v143</PlatformToolset>
-        <UseDebugLibraries>false</UseDebugLibraries>
-        <WholeProgramOptimization>true</WholeProgramOptimization>
-        <CharacterSet>Unicode</CharacterSet>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'"
-                   Label="Configuration">
-        <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v143</PlatformToolset>
-        <UseDebugLibraries>false</UseDebugLibraries>
-        <WholeProgramOptimization>true</WholeProgramOptimization>
-        <CharacterSet>Unicode</CharacterSet>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'"
-                   Label="Configuration">
-        <ConfigurationType>Application</ConfigurationType>
-        <PlatformToolset>v143</PlatformToolset>
-        <UseDebugLibraries>false</UseDebugLibraries>
-        <WholeProgramOptimization>true</WholeProgramOptimization>
-        <CharacterSet>Unicode</CharacterSet>
-    </PropertyGroup>
-    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-    <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
-        <Import Project="$(QtMsBuild)\qt_defaults.props" />
-    </ImportGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'"
-                   Label="QtSettings">
-        <QtInstall>Qt 6.8.2</QtInstall>
-        <QtModules>core;gui;widgets</QtModules>
-        <QtBuildConfig>debug</QtBuildConfig>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
-                   Label="QtSettings">
-        <QtInstall>Qt 6.8.2</QtInstall>
-        <QtModules>core;gui;widgets</QtModules>
-        <QtBuildConfig>release</QtBuildConfig>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'"
-                   Label="QtSettings">
-        <QtInstall>Qt 6.8.2</QtInstall>
-        <QtModules>core;gui;widgets</QtModules>
-        <QtBuildConfig>release</QtBuildConfig>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'"
-                   Label="QtSettings">
-        <QtInstall>Qt 6.8.2</QtInstall>
-        <QtModules>core;gui;widgets</QtModules>
-        <QtBuildConfig>release</QtBuildConfig>
-    </PropertyGroup>
-    <Target Name="QtMsBuildNotFound"
-            BeforeTargets="CustomBuild;ClCompile"
-            Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
-        <Message Importance="High"
-                 Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
-    </Target>
-    <ImportGroup Label="ExtensionSettings" />
-    <ImportGroup Label="Shared" />
-    <ImportGroup Label="PropertySheets"
-                 Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-                Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-                Label="LocalAppDataPlatform" />
-        <Import Project="$(QtMsBuild)\Qt.props" />
-    </ImportGroup>
-    <ImportGroup Label="PropertySheets"
-                 Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-                Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-                Label="LocalAppDataPlatform" />
-        <Import Project="$(QtMsBuild)\Qt.props" />
-    </ImportGroup>
-    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'"
-                 Label="PropertySheets">
-        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-                Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-                Label="LocalAppDataPlatform" />
-        <Import Project="$(QtMsBuild)\Qt.props" />
-    </ImportGroup>
-    <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'"
-                 Label="PropertySheets">
-        <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props"
-                Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')"
-                Label="LocalAppDataPlatform" />
-        <Import Project="$(QtMsBuild)\Qt.props" />
-    </ImportGroup>
-    <PropertyGroup Label="UserMacros" />
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" />
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" />
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" />
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" />
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-        <PostBuildEvent>
-            <Command>                
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|x64">
+      <Configuration>Template</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="UI|x64">
+      <Configuration>UI</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <!-- Include main.cpp only in the UI configuration -->
+  <ItemGroup Condition="'$(Configuration)'=='UI'">
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <!-- Exclude template_main.cpp when building the UI executable -->
+  <ItemGroup Condition="'$(Configuration)'=='UI'">
+    <ClCompile Remove="template_main.cpp" />
+  </ItemGroup>
+  <!-- Include template_main.cpp only in the Template configuration -->
+  <ItemGroup Condition="'$(Configuration)'=='Template'">
+    <ClCompile Include="template_main.cpp" />
+  </ItemGroup>
+  <!-- Exclude main.cpp when building the template executable -->
+  <ItemGroup Condition="'$(Configuration)'=='Template'">
+    <ClCompile Remove="main.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3C8B64FD-CE54-4464-B4FA-20377881A6F8}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='UI|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Template|x64'">10.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.8.2</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.8.2</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.8.2</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="QtSettings">
+    <QtInstall>Qt 6.8.2</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PostBuildEvent>
+      <Command>                
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Core.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Widgets.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Gui.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll" "$(OutDir)\platforms\"
             </Command>
-        </PostBuildEvent>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-        <PostBuildEvent>
-            <Command>                
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PostBuildEvent>
+      <Command>                
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Core.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Widgets.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Gui.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll" "$(OutDir)\platforms\"
             </Command>
-        </PostBuildEvent>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'">
-        <PostBuildEvent>
-            <Command>                
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'">
+    <PostBuildEvent>
+      <Command>                
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Core.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Widgets.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Gui.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll" "$(OutDir)\platforms\"
             </Command>
-        </PostBuildEvent>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
-        <PostBuildEvent>
-            <Command>                
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'">
+    <PostBuildEvent>
+      <Command>                
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Core.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Widgets.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\bin\Qt6Gui.dll" "$(OutDir)"
                 xcopy /Y /I "D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll" "$(OutDir)\platforms\"
             </Command>
-        </PostBuildEvent>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'"
-                         Label="Configuration">
-        <ClCompile>
-            <MultiProcessorCompilation>true</MultiProcessorCompilation>
-            <WarningLevel>Level3</WarningLevel>
-            <SDLCheck>true</SDLCheck>
-            <ConformanceMode>true</ConformanceMode>
-        </ClCompile>
-        <Link>
-            <SubSystem>Windows</SubSystem>
-            <GenerateDebugInformation>true</GenerateDebugInformation>
-        </Link>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'"
-                         Label="Configuration">
-        <ClCompile>
-            <MultiProcessorCompilation>true</MultiProcessorCompilation>
-            <WarningLevel>Level3</WarningLevel>
-            <SDLCheck>true</SDLCheck>
-            <ConformanceMode>true</ConformanceMode>
-            <FunctionLevelLinking>true</FunctionLevelLinking>
-            <IntrinsicFunctions>true</IntrinsicFunctions>
-        </ClCompile>
-        <Link>
-            <SubSystem>Windows</SubSystem>
-            <GenerateDebugInformation>false</GenerateDebugInformation>
-            <EnableCOMDATFolding>true</EnableCOMDATFolding>
-            <OptimizeReferences>true</OptimizeReferences>
-        </Link>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'"
-                         Label="Configuration">
-        <ClCompile>
-            <MultiProcessorCompilation>true</MultiProcessorCompilation>
-            <WarningLevel>Level3</WarningLevel>
-            <SDLCheck>true</SDLCheck>
-            <ConformanceMode>true</ConformanceMode>
-            <FunctionLevelLinking>true</FunctionLevelLinking>
-            <IntrinsicFunctions>true</IntrinsicFunctions>
-        </ClCompile>
-        <Link>
-            <SubSystem>Windows</SubSystem>
-            <GenerateDebugInformation>false</GenerateDebugInformation>
-            <EnableCOMDATFolding>true</EnableCOMDATFolding>
-            <OptimizeReferences>true</OptimizeReferences>
-        </Link>
-    </ItemDefinitionGroup>
-    <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'"
-                         Label="Configuration">
-        <ClCompile>
-            <MultiProcessorCompilation>true</MultiProcessorCompilation>
-            <WarningLevel>Level3</WarningLevel>
-            <SDLCheck>true</SDLCheck>
-            <ConformanceMode>true</ConformanceMode>
-            <FunctionLevelLinking>true</FunctionLevelLinking>
-            <IntrinsicFunctions>true</IntrinsicFunctions>
-        </ClCompile>
-        <Link>
-            <SubSystem>Windows</SubSystem>
-            <GenerateDebugInformation>false</GenerateDebugInformation>
-            <EnableCOMDATFolding>true</EnableCOMDATFolding>
-            <OptimizeReferences>true</OptimizeReferences>
-        </Link>
-    </ItemDefinitionGroup>
-    <ItemGroup>
-        <ClCompile Include="configreader.cpp" />
-        <ClCompile Include="displayhandler.cpp" />
-        <ClCompile Include="main.cpp" />
-        <ClCompile Include="prankgenerator.cpp" />
-        <ClCompile Include="pranksoftware.cpp" />
-        <QtRcc Include="pranksoftware.qrc" />
-        <QtUic Include="pranksoftware.ui" />
-        <QtMoc Include="pranksoftware.h" />
-        <ClCompile Include="template_main.cpp" />
-        <ClCompile Include="mainwindow.cpp" />
-    </ItemGroup>
-    <ItemGroup>
-        <QtMoc Include="mainwindow.h" />
-    </ItemGroup>
-    <ItemGroup>
-        <ClInclude Include="configreader.h" />
-        <ClInclude Include="displayhandler.h" />
-        <ClInclude Include="prankgenerator.h" />
-    </ItemGroup>
-    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-    <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
-        <Import Project="$(QtMsBuild)\qt.targets" />
-    </ImportGroup>
-    <ImportGroup Label="ExtensionTargets" />
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="Configuration">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="configreader.cpp" />
+    <ClCompile Include="displayhandler.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="prankgenerator.cpp" />
+    <ClCompile Include="pranksoftware.cpp" />
+    <QtRcc Include="pranksoftware.qrc" />
+    <QtUic Include="pranksoftware.ui" />
+    <QtMoc Include="pranksoftware.h" />
+    <ClCompile Include="template_main.cpp" />
+    <ClCompile Include="mainwindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="mainwindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="configreader.h" />
+    <ClInclude Include="displayhandler.h" />
+    <ClInclude Include="prankgenerator.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets" />
 </Project>
