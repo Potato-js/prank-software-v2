@@ -1,13 +1,10 @@
 ﻿   Qt/MSBuild: 3.3.1.1
    Qt: 6.8.2
-  moc mainwindow.h
-  main.cpp
-  mainwindow.cpp
-  moc_mainwindow.cpp
+  template_main.cpp
   Generating code
-  68 of 204 functions (33.3%) were compiled, the rest were copied from previous compilation.
-    34 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+  23 of 218 functions (10.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   prank-software-v2.vcxproj -> D:\Coding Projects V2\cpp\prank-software-v2\x64\Release\prank-software-v2.exe
   D:\Qt\6.8.2\msvc2022_64\bin\Qt6Core.dll

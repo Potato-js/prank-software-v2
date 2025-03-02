@@ -9,4 +9,12 @@
     <QtTouchProperty>
     </QtTouchProperty>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='UI|x64'" Label="QtSettings">
+    <QtTouchProperty>
+    </QtTouchProperty>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|x64'" Label="QtSettings">
+    <QtTouchProperty>
+    </QtTouchProperty>
+  </PropertyGroup>
 </Project>

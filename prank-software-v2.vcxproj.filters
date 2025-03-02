@@ -21,6 +21,9 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Source Files\Template">
+      <UniqueIdentifier>{3d4ddb36-8138-48e4-94d8-999279e63d63}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="pranksoftware.qrc">
@@ -42,18 +45,33 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pranksoftware.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="prankgenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="configreader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="displayhandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="template.cpp">
+      <Filter>Source Files\Template</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="prankgenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="configreader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="displayhandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

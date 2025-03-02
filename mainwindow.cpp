@@ -11,9 +11,10 @@
 #include <qpushbutton.h>
 #include <qlineedit.h>
 #include <qdir.h>
+#include <qdebug.h>
 
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
-    this->setAcceptDrops(true);
+    setAcceptDrops(true);
     setWindowTitle("Jumpscare Software V1");
 
     QWidget* centralWidget = new QWidget(this);
@@ -77,6 +78,7 @@ void MainWindow::dropEvent(QDropEvent* event) {
     if (!droppedFiles.isEmpty()) {
 		mediaFilePath = droppedFiles.first().toLocalFile();
 		fileLabel->setText(QDir::toNativeSeparators(mediaFilePath));
+                qDebug() << "Media file selected via drag & drop:" << mediaFilePath;
     }
 }
 
@@ -85,12 +87,16 @@ void MainWindow::browseForMedia() {
     if (!selectedFile.isEmpty()) {
 		mediaFilePath = selectedFile;
 		fileLabel->setText("File Selected: " + mediaFilePath);
+        qDebug() << "Media file selected via Browse:" << mediaFilePath;
 	}
 }
 
 void MainWindow::generatePrank() {
+    qDebug() << "Generate button pressed.";
+
     if (mediaFilePath.isEmpty()) {
         QMessageBox::warning(this, "No File Selected", "Please drag and drop a media file first!");
+        qDebug() << "No media file selected.";
         return;
     }
 
@@ -99,6 +105,7 @@ void MainWindow::generatePrank() {
 
 	if (minInterval <= 0 || maxInterval <= 0 || minInterval > maxInterval) {
 		QMessageBox::warning(this, "Invalid Interval", "Please enter valid interval values!");
+        qDebug() << "Invalid interval values:" << minInterval << maxInterval;
 		return;
 	}
 
@@ -108,10 +115,13 @@ void MainWindow::generatePrank() {
 		return;
 	}
 
+    qDebug() << "Starting executable generation.";
 	QString errorMessage;
     if (PrankGenerator::generateExecutable(mediaFilePath, minInterval, maxInterval, outputDir, errorMessage)) {
-		outputLabel->setText("Output: prank.exe generated!");
+		outputLabel->setText("Output: prank.exe (w/ launcher) generated!");
+        qDebug() << "Executable generated successfully.";
     } else {
 		QMessageBox::critical(this, "Generation Failed", errorMessage);
+        qDebug() << "Executable generation failed:" << errorMessage;
     }
 }

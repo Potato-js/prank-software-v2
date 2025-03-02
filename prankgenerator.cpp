@@ -9,13 +9,13 @@ bool PrankGenerator::generateExecutable(const QString& mediaFilePath, int minInt
 	QString appDir = QCoreApplication::applicationDirPath();
 	QString templateExe = appDir + "/prank_template.exe";
 	if (!QFile::exists(templateExe)) {
-		errorMessage = "Template executable not found!";
+		errorMessage = "Template executable not found at: " + templateExe;
 		return false;
 	}
 
 	QDir outDir(outputDir);
 	if (!outDir.exists() && !outDir.mkpath(".")) {
-		errorMessage = "Output directory does not exist!";
+		errorMessage = "Failed to create output directory: " + outputDir;
 		return false;
 	}
 
@@ -28,16 +28,21 @@ bool PrankGenerator::generateExecutable(const QString& mediaFilePath, int minInt
 		return false;
 	}
 
-	QString configFile = outDir.absoluteFilePath("config.txt");
-	QFile file(configFile);
+	QString launcherFile = outDir.absoluteFilePath("launch_prank.bat");
+	QFile file(launcherFile);
 	if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-		errorMessage = "Failed to write configuration file: " + configFile;
+          errorMessage = "Failed to write configuration file: " + launcherFile;
 		return false;
 	}
 	QTextStream out(&file);
-	out << mediaFilePath << "\n" << minInterval << "\n" << maxInterval << "\n";
-	file.close();
+	
+    QString command = "prank.exe \"" + mediaFilePath + "\" " +
+                          QString::number(minInterval) + " " +
+                          QString::number(maxInterval);
+    out << "@echo off\n";
+    out << command << "\n";
+    file.close();	
 
-	qDebug() << "Executable generated successfully at:" << outputExe;
+	qDebug() << "Executable generated successfully at:" << outputDir;
 	return true;
 }
