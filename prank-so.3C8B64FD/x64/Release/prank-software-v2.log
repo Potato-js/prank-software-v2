@@ -1,0 +1,18 @@
+﻿   Qt/MSBuild: 3.3.1.1
+  Reading Qt configuration (D:/Qt/6.8.2/msvc2022_64/bin/qmake)
+   Qt: 6.8.2
+  pranksoftware.cpp
+  Generating code
+  132 of 189 functions (69.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    4 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  prank-software-v2.vcxproj -> D:\Coding Projects V2\cpp\prank-software-v2\x64\Release\prank-software-v2.exe
+  D:\Qt\6.8.2\msvc2022_64\bin\Qt6Core.dll
+  1 File(s) copied
+  D:\Qt\6.8.2\msvc2022_64\bin\Qt6Widgets.dll
+  1 File(s) copied
+  D:\Qt\6.8.2\msvc2022_64\bin\Qt6Gui.dll
+  1 File(s) copied
+  D:\Qt\6.8.2\msvc2022_64\plugins\platforms\qwindows.dll
+  1 File(s) copied
